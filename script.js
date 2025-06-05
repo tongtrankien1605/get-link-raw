@@ -1,19 +1,34 @@
 function getRawLink() {
     const url = document.getElementById('urlInput').value.trim();
     const result = document.getElementById('result');
+    const copyButton = document.getElementById('copyButton');
     
     const githubRegex = /^https:\/\/github\.com\/[\w-]+\/[\w-]+\/blob\/[\w-]+\/.+$/;
     if (!githubRegex.test(url)) {
         result.innerHTML = 'URL tệp GitHub không hợp lệ. Phải bao gồm /blob/ và liên kết đến một tệp.';
+        copyButton.style.display = 'none';
         return;
     }
 
     try {
         const rawUrl = url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
         result.innerHTML = `Raw Link: <a href="${rawUrl}" target="_blank">${rawUrl}</a>`;
+        copyButton.style.display = 'inline-block';
+        copyButton.setAttribute('data-link', rawUrl); // Lưu link để copy
     } catch (error) {
         result.innerHTML = 'Có lỗi khi tạo link raw, vui lòng thử lại';
+        copyButton.style.display = 'none';
     }
+}
+
+function copyLink() {
+    const copyButton = document.getElementById('copyButton');
+    const link = copyButton.getAttribute('data-link');
+    navigator.clipboard.writeText(link).then(() => {
+        alert('Đã copy link!');
+    }).catch(error => {
+        console.log('Lỗi copy:', error);
+    });
 }
 
 // Phát nhạc khi tương tác
@@ -30,11 +45,10 @@ function toggleMusic() {
     }
 }
 
-// Kích hoạt trên mọi tương tác
 document.addEventListener('mousemove', toggleMusic);
+document.addEventListener('touchstart', toggleMusic);
+document.addEventListener('touchend', toggleMusic);
 document.addEventListener('click', toggleMusic);
-document.addEventListener('touchstart', toggleMusic); // Chạm
-document.addEventListener('touchend', toggleMusic);  // Nhấn và thả
 
 // Kiểm tra ảnh nền
 window.addEventListener('load', () => {
