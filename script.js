@@ -6,7 +6,7 @@ function getRawLink() {
     // Kiểm tra URL hợp lệ
     const githubRegex = /^https:\/\/github\.com\/[\w-]+\/[\w-]+\/blob\/[\w-]+\/.+$/;
     if (!githubRegex.test(url)) {
-        result.innerHTML = 'Invalid GitHub file URL. Must include /blob/ and point to a file.';
+        result.innerHTML = 'URL tệp GitHub không hợp lệ. Phải bao gồm /blob/ và liên kết đến một tệp.';
         return;
     }
 
@@ -15,6 +15,6 @@ function getRawLink() {
         const rawUrl = url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
         result.innerHTML = `Raw Link: <a href="${rawUrl}" target="_blank">${rawUrl}</a>`;
     } catch (error) {
-        result.innerHTML = 'Error generating raw link.';
+        result.innerHTML = 'Có lỗi khi tạo link raw, vui lòng thử lại';
     }
 }
