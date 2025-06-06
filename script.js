@@ -14,7 +14,7 @@ function getRawLink() {
         const rawUrl = url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
         result.innerHTML = `Raw Link: <a href="${rawUrl}" target="_blank">${rawUrl}</a>`;
         copyButton.style.display = 'inline-block';
-        copyButton.setAttribute('data-link', rawUrl); // Lưu link để copy
+        copyButton.setAttribute('data-link', rawUrl);
     } catch (error) {
         result.innerHTML = 'Có lỗi khi tạo link raw, vui lòng thử lại';
         copyButton.style.display = 'none';
@@ -29,6 +29,16 @@ function copyLink() {
     }).catch(error => {
         console.log('Lỗi copy:', error);
     });
+}
+
+function clearInput() {
+    const urlInput = document.getElementById('urlInput');
+    const result = document.getElementById('result');
+    const copyButton = document.getElementById('copyButton');
+    
+    urlInput.value = '';
+    result.innerHTML = '';
+    copyButton.style.display = 'none';
 }
 
 // Phát nhạc khi tương tác

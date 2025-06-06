@@ -10,14 +10,16 @@
 <body>
     <div class="container">
         <h1>Get Link Raw Github by Tống Trần Kiên</h1>
-        <input type="text" id="urlInput" placeholder="Nhập URL tệp GitHub">
-        <button onclick="getRawLink()">Get Raw Link</button>
+        <div class="input-container">
+            <input type="text" id="urlInput" placeholder="Nhập URL tệp GitHub">
+            <button class="clear-button" onclick="clearInput()">X</button>
+        </div>
+        <button class="get-raw-btn" onclick="getRawLink()">Get Link</button>
         <p id="result"></p>
-        <button class="btnCopy" id="copyButton" style="display:none;" onclick="copyLink()">Copy Link Raw</button>
+        <button class="btnCopy" id="copyButton" style="display:none;" onclick="copyLink()">Copy Link</button>
     </div>
     <audio id="backgroundMusic" loop>
         <source src="https://raw.githubusercontent.com/tongtrankien1605/tongtrankien1605/main/global/audio/nhac-cuc-chat.mp3" type="audio/mpeg">
-        
     </audio>
     <script src="script.js"></script>
 </body>
