@@ -1,5 +1,5 @@
-## 🚀  **Chức năng của repository này là** set link raw Github !!! 🚀
- **👉  Sử dụng [TẠI ĐÂY](https://tongtrankien1605.github.io/get-link-raw) 👈**
+## 🚀  **Chức năng của repository này là** Get link raw Github !!! 🚀
+ **👉  Sử dụng [TẠI ĐÂY](https://tongtrankien1605.github.io/get-link-raw-github) 👈**
 
 <br/>
 
