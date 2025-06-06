@@ -53,7 +53,7 @@ document.addEventListener('click', toggleMusic);
 // Kiểm tra ảnh nền
 window.addEventListener('load', () => {
     const bgImage = new Image();
-    bgImage.src = 'https://raw.githubusercontent.com/tongtrankien1605/picture/main/city-night.jpg';
+    bgImage.src = 'https://raw.githubusercontent.com/tongtrankien1605/tongtrankien1605/main/global/image/city-night.jpg';
     bgImage.onload = () => console.log('Ảnh nền tải thành công');
     bgImage.onerror = () => console.log('Lỗi tải ảnh nền, kiểm tra link');
 });
