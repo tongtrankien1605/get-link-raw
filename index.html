@@ -6,6 +6,7 @@
     <title>Get Link Raw Github by Tống Trần Kiên</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="data:,">
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
 </head>
 <body>
     <div class="container">
@@ -14,15 +15,15 @@
         </button>
         <h1>Get Link Raw Github by Tống Trần Kiên</h1>
         <div class="input-container">
-            <input type="text" id="urlInput" placeholder="Nhập URL tệp GitHub">
+            <input type="text" id="urlInput" placeholder="Nhập URL base GitHub hoặc URL CDN jsDeliver">
             <button class="clear-button" onclick="clearInput()">X</button>
         </div>
-        <button class="get-raw-btn" onclick="getRawLink()">Get Link</button>
+        <button class="get-raw-btn" onclick="getRawLink()">Lấy Link Raw</button>
         <p id="result"></p>
-        <button class="btnCopy" id="copyButton" style="display:none;" onclick="copyLink()">Copy Link</button>
+        <button class="btnCopy" id="copyButton" style="display:none;" onclick="copyLink()">Sao Chép Link</button>
     </div>
     <audio id="backgroundMusic" loop>
-        <source src="https://raw.githubusercontent.com/tongtrankien1605/tongtrankien1605/main/global/audio/nhac-cuc-chat.mp3" type="audio/mpeg">
+        <source src="https://cdn.jsdelivr.net/gh/tongtrankien1605/tongtrankien1605@main/global/audio/nhac-cuc-chat.mp3" type="audio/mpeg">
     </audio>
     <script src="script.js"></script>
 </body>

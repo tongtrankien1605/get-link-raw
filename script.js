@@ -1,17 +1,45 @@
+// Khởi tạo trạng thái nhạc nền
+const music = document.getElementById('backgroundMusic');
+const speakerIcon = document.getElementById('speakerIcon');
+let isPlaying = false;
+let isMuted = false;
+
 function getRawLink() {
     const url = document.getElementById('urlInput').value.trim();
     const result = document.getElementById('result');
     const copyButton = document.getElementById('copyButton');
-    
-    const githubRegex = /^https:\/\/github\.com\/[\w-]+\/[\w-]+\/blob\/[\w-]+\/.+$/;
-    if (!githubRegex.test(url)) {
-        result.innerHTML = 'URL tệp GitHub không hợp lệ. Phải bao gồm /blob/ và liên kết đến một tệp.';
+
+    // Regex cho link base GitHub
+    const githubRegex = /^https:\/\/github\.com\/([\w-]+)\/([\w-]+)\/blob\/([\w-]+)\/(.+)$/;
+    // Regex cho link CDN jsDelivr
+    const cdnJsDelivrRegex = /^https:\/\/cdn\.jsdelivr\.net\/gh\/([\w-]+)\/([\w-]+)@([\w-]+)\/(.+)$/;
+
+    let user, repo, branch, path, rawUrl;
+
+    // Kiểm tra link base GitHub
+    const githubMatch = url.match(githubRegex);
+    // Kiểm tra link CDN jsDelivr
+    const cdnMatch = url.match(cdnJsDelivrRegex);
+
+    if (githubMatch) {
+        user = githubMatch[1];
+        repo = githubMatch[2];
+        branch = githubMatch[3];
+        path = githubMatch[4];
+    } else if (cdnMatch) {
+        user = cdnMatch[1];
+        repo = cdnMatch[2];
+        branch = cdnMatch[3];
+        path = cdnMatch[4];
+    } else {
+        result.innerHTML = 'URL không hợp lệ. Phải là link GitHub (/blob/) hoặc CDN jsDelivr với @branch.';
         copyButton.style.display = 'none';
         return;
     }
 
     try {
-        const rawUrl = url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+        // Tạo link raw GitHub
+        rawUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${path}`;
         result.innerHTML = `Raw Link: <a href="${rawUrl}" target="_blank">${rawUrl}</a>`;
         copyButton.style.display = 'inline-block';
         copyButton.setAttribute('data-link', rawUrl);
@@ -35,16 +63,11 @@ function clearInput() {
     const urlInput = document.getElementById('urlInput');
     const result = document.getElementById('result');
     const copyButton = document.getElementById('copyButton');
-    
+
     urlInput.value = '';
     result.innerHTML = '';
     copyButton.style.display = 'none';
 }
-
-const music = document.getElementById('backgroundMusic');
-const speakerIcon = document.getElementById('speakerIcon');
-let isPlaying = false;
-let isMuted = false;
 
 function toggleMusic() {
     if (!isPlaying && !isMuted) {
@@ -86,7 +109,7 @@ document.addEventListener('click', (e) => {
 // Kiểm tra ảnh nền
 window.addEventListener('load', () => {
     const bgImage = new Image();
-    bgImage.src = 'https://raw.githubusercontent.com/tongtrankien1605/tongtrankien1605/main/global/image/city-night.jpg';
+    bgImage.src = 'https://cdn.jsdelivr.net/gh/tongtrankien1605/tongtrankien1605@main/global/image/city-night.jpg';
     bgImage.onload = () => console.log('Ảnh nền tải thành công');
     bgImage.onerror = () => console.log('Lỗi tải ảnh nền, kiểm tra link');
 });
